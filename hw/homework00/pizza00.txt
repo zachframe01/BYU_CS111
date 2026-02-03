@@ -1,0 +1,190 @@
+Objectives
+Practice basic Python Syntax
+variables & basic arithmetic operators
+conditionals & boolean expressions
+console I/O
+simple string formatting
+Help you decide between CS 110 and CS 111
+In this first Homework, you will be using a few variables, conditionals, and working with input and output. It is also your opportunity to become familiar with the Python language and interpreter, exactly following specifications, how to submit assignments, and with our autograder.
+
+If you are struggling with the programming concepts in this assignment, it might be worth considering switching to CS 110. Talk to your TA or professor if you need help deciding!
+
+Introduction
+You have been elected as President of the Pizza Council of BYUSA. Your primary responsibility is to determine how many pizzas should be ordered when BYUSA holds an event. To make things easier, you decide to write a Python program to help you do the calculations.
+
+As an overview, the program will first prompt the user to enter the number of people to be fed and later prompt them to enter the tip percentage. The program will calculate the number of large, medium, and small pizzas needed. Based on those numbers, it will then calculate the total price (including tip), the total number of square inches of pizza ordered and average square inches per person.
+
+Special Notes
+Output format
+For this homework, the autograder will check to see that your calculation matches with what is expected. Your output should generally follow the format outlined in the instructions below but the most important part is the calculated values you output.
+
+Constants and Magic Numbers
+This homework will help you gain experience using constants (variables not meant to change) in your code and avoiding the use of magic numbers (magic numbers is a term that refers to a number used in the code without any explanation of its meaning). While Python doesn't really have a way to set constant values, so we use a special naming convention to signify that a variable should not be changed. We do this using "upper snake case." In upper snake case, all characters are capitalized and underscores - "_" - connect the words. For example, to declare constants for the value of pi and the people per large pizza, the code would look like this:
+
+PI = 3.14159265
+PEOPLE_PER_LARGE = 7
+Constants should typically be declared at the top of the file (outside of any functions). They are usually found directly under the import statements in a Python file.
+
+ Warning
+
+If you don't follow the upper snake case style for your constants (and *only* the constants), the autograder will not be able to fully grade your assignment and you will not receive full credit. This means that variables (note variables not constants) should not follow the upper case snake style!
+
+Numerical precision
+The number of each type of pizzas are integers and should be printed as such. The areas and costs should be displayed with two decimal places. Note that to round correctly in this assignment you need a method that will ensure you don't lose trailing zeroes when you print your output.
+
+ Hint
+
+You should look through the String Methods documentationLinks to an external site. for a method that can do this.
+
+You should only need to use one method to format your numbers. If you use more, it may result in incorrect output.
+
+Pizza Data
+The following table provides information about the various sized pizzas that you’ll need to implement this assignment. Please make sure to use these exact values or your tests will fail.
+
+Pizza Size	Price	Diameter	People Fed
+Large	$14.68	20 inches	7 people
+Medium	$11.48	16 inches	3 people
+Small	$7.28	12 inches	1 person
+The auto-grader will use both these values and a second set of values (given below) to check that your code is working properly. It does this by changing the values of your "constants" which is why the names need to be exact. The alternate constants are:
+
+Pizza Size	Price	Diameter	People Fed
+Large	$15.78	24 inches	9 people
+Medium	$13.25	18 inches	5 people
+Small	$8.39	14 inches	2 people
+Sample Input and Output
+When you run the program in the case where there are 303 guests and you want to give a 15% tip, the interaction will look like:
+
+Please enter how many guests to order for:303
+43 large pizzas, 0 medium pizzas, and 2 small pizzas will be needed.
+
+A total of 13735.04 square inches of pizza will be ordered (45.33 per guest).
+
+Please enter the tip as a percentage (i.e. 10 means 10%):15
+The total cost of the event will be: $742.67.
+The output with the second set of constants, for the same input, would be:
+
+Please enter how many guests to order for:303
+33 large pizzas, 1 medium pizzas, and 1 small pizzas will be needed.
+
+A total of 15337.26 square inches of pizza will be ordered (50.62 per guest).
+
+Please enter the tip percentage (i.e. 10 means 10%):15
+The total cost of the event will be: $623.74.
+The autograder does not care about what phrasing you use for prompts and outputs. As long as you have the right numbers in the right order, you should pass the pytests. The TAs, however, will look at your output to make sure it is understandable by a person running the code.
+
+As a second check that your code is working okay before submitting it, using the inputs of 20 guests and 12% tax you should get the following output values:
+
+Output field	Original Constants	Alternate Constants
+# Large Pizzas	2	2
+# Medium Pizzas	2	0
+# Small Pizzas	0	1
+Total Area	1030.44	1058.72
+Area Per Person	51.52	52.94
+Total Cost:	58.60	44.74
+ Reset Your Values
+
+Be sure to change your constant values back to the original ones in the Pizza Data section above before submitting to the autograder.
+
+Grading
+All programming assignments in CS 111 are graded using a 3-level rubric with minium standards for each level. You can find the details of the grading system in the Syllabus. Each assigment will present the standards needed to receive a Core, Advanced, & Excellent score. Assignments with no submission receive the "No Basis" mark and submissions that fail to meet the Core standard receive the "Rework" mark.
+
+Rubric
+Grade Level	Required standards
+Core	- All constants are properly defined using UPPER_SNAKE_CASE
+- Program prompts user for number of people to purchase pizza for
+- Number of each size pizza are correctly calculated and displayed
+- Variable names are clear, informative, and use a consistent style
+Advanced	- Total pizza area is properly calculated
+- Area per person is correctly caclulated
+- Total pizza area and area per person properly displayed
+Excellent	- Code properly prompts for tip percentage as an integer value
+- Total cost is properly computed and displayed
+- Code meets all course code quality standards outlined on Canvas
+When submitting your code to the autograder, each tests is keyed to one of the grade levels above. If you pass all the "CORE" tests, you receive the Core grade (assuming you also meet the Core style requirements), Passing all the "CORE" and "ADVANCED" tests gives you the Advanced grade, and passing all tests gives you the Excellent grade.
+
+Part 1 - Getting Started
+To get started on this homework you should download the zip file at the top of the page and extract the contents into a new directory. The contents of the file are:
+
+homework0.py - this is the file you will edit and turn in for grading
+test_homework0.py - this is a test file you can use to verify that your code is running correctly. This is the exact test script that the autograder will run when you submit your code.
+test_files directory - This directory contains the expected output for the test script annotated for the test to evaluate. You can look at these files if you get stumped, but be aware that they contain extra coded used by the autograder that you should not be outputting.
+Once you've extracted the files, open the directory as a new project in your IDE. Then verify that you can run the test_homework0.py file. If you set up your environment properly during the Getting Started and Python Setup Lab, it should run. All the tests will fail as your homework0.py file is empty, but as long as the tests ran you are good to go. If you get a "Traceback" error, something isn't working and you should check with a TA to get your environment set up correctly.
+
+Part 2 - Implementation
+In this part, you will write the code for the program. In this homework, we walk you through the steps, but you should have a good idea of how to write the code for each part already based on the specification above. The tasks below model the concepts of Stepwise refinement and incremental development which we've talked about in a future lecture.
+
+Sample output for the program was given above in the instructions, so you can verify that you are implementing things properly as you go. You can also run the test script to verify your code as implement each part (test driven development).
+
+Task 1 - Count your Many Pizzas
+In this part of the homework, you’ll write the code to prompt the user for the number of guests and then compute the number of large, medium, and small pizzas needed.
+
+Start by defining three constants for the number of people fed by each size of pizza. These constants should be named PEOPLE_PER_LARGE, PEOPLE_PER_MEDIUM, and PEOPLE_PER_SMALL. Then prompt the user for how many guests to order pizza for. The prompt to the user should be something like:
+
+Please enter how many guests to order for:
+Once the user has provided their input, compute the number of large, medium, and then small pizzas you need to order for there to be exactly enough pizza for everyone. For example if you have 9 people to order for, ordering two large pizzas is too much, you would need 1 large and two small.
+
+ Hint
+
+Try using Python's floor divisionLinks to an external site. (//) and modulusLinks to an external site. (%) operators.
+
+Also be sure that you check to see if you need to round up for small pizzas. Remember the constants can always be changed so the number of people a small pizza can feed won't always be the same.
+
+Once you’ve determined the number of pizzas to order, report that to the user with the following output:
+
+<NN> large pizzas, <NN> medium pizzas, and <NN> small pizzas will be needed.
+where the <NN>s are replaced by the quantity needed of each pizza size. If no pizzas of that size are need, print 0 (zero) for the number.
+
+Task 2 - Serving Size
+Next, we’ll compute the total number of square inches of pizza ordered and how many square inches of pizza each person gets.
+
+Start by declaring four new constants, one for PI (use the exact value given in the Constants and Magic Numbers section above), and three for the diameters of the various pizzas. The constants for the diameters should be named DIAMETER_LARGE, DIAMETER_MEDIUM, and DIAMETER_SMALL.
+
+Next compute the total area of pizza (in square inches) you need to order.
+
+Then compute the total area of pizza (in square inches) each guest can eat.
+
+Report these values with a precision of two decimal places to the user with the following output style:
+
+A total of <NN.NN> square inches of pizza will be ordered (<NN.NN> per guest).
+where <NN.NN> is the size computed. There should be an empty line between this output and the output from Task 1 and between the output for this task and Task 3 below.
+
+Task 3 – Paying the Piper
+Finally, we need to compute the cost of the pizzas. We’re also going to give the delivery driver a tip.
+
+Start by defining your final three constants to represent the cost of each size pizza. These constants should be named COST_LARGE, COST_MEDIUM, and COST_SMALL.
+
+Then prompt the user for the percent of the total price to be paid as a tip. The tip percentage will be input as a whole integer from 0 to 100. The prompt to use is:
+
+Please enter the tip as a percentage (i.e. 10 means 10%):
+Once the tip amount has been provided, compute and report the total cost (including tip) of all the pizzas. The output should look like this:
+
+The total cost of the event will be: $<NN.NN>
+Where <NN.NN> is the total cost of the pizzas and tip combined.
+
+Task 4 - The "Magic" of Avoiding Magic Numbers
+Sometimes it may feel like a nuisance to make sure to properly use constants for magic numbers, so here we give you the opportunity to see how useful it can be. By changing just some of the constants, your program can simulate any pizza sizes and prices, without having to touch any other part of your code. Those constants are how many people each pizza feeds, the diameters of each pizza, and the cost of each pizza. Make sure that you have written your code so that by changing only those nine values, you can simulate any arbitrary pizza values.
+
+Try this out yourself by changing just the values of the constants at the top of the program to the following new values (duplicated from the specification above):
+
+Pizza Size	Price	Diameter	People Fed
+Large	$15.78	24 inches	9 people
+Medium	$13.25	18 inches	5 people
+Small	$8.39	14 inches	2 people
+Now that you've changed the values of the constants, run the program again. You should see that the program still works correctly, but now with the new values. You can compare to the sample output given in the specification.
+
+ Hint
+
+A common mistake is improperly computing the number of small pizzas when it can serve more than one person. You still need to buy a pizza for that last person even if there is a bit extra left over.
+
+ Reset Your Values
+
+Be sure to change your constant values back to the original ones in the Pizza Data section above before submitting to the autograder.
+
+If you've written your code properly, the autograder will change the values of those constants and test your code with different values. If everything is working, you're already passing the final tests. If you've hard-coded any of those values in your calculations, you will not pass the tests and lose points. Make sure you have also capitalized every letter in your constant names as the autograder is checking for this.
+
+ Note
+
+Even though in reality you will not likely be trying out different values for PI, the autograder expects this to be one of your constants and will try multiple values for it. It should be set to 3.14159265 in your code.
+
+Turn in your work
+You'll submit your homework0.py file below via Gradescope where it will be checked via the autograder. We will be testing your program using multiple sets of constants. Make sure that you haven't "hard coded" anything specific to your data.

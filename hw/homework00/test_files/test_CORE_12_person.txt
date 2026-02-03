@@ -1,0 +1,8 @@
+
+<<12>>
+``1;large;33`` large pizzas, ``1;medium;33`` medium pizzas, and ``2;small;34`` small pizzas will be needed.
+
+A total of 741.42 square inches of pizza will be ordered (guest per guest).
+
+<<80>>
+The total cost of the event will be: $73.30.
