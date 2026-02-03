@@ -55,42 +55,78 @@ def sepia(filename):
 
 
 def flipped(filename):
-    # for y in range(0, <image height>):
-    #     for x in range(0, <image width>):
-      ## code to manipulate the pixel
     # Takes as inputs a filename.
     # Returns an image where each pixel's position is flipped vertically
-    return
+    image = Image(filename)
+    new_image = Image.blank(image.width, image.height)
+    
+
+    target_y = image.height - 1 
+    
+    for y in range(0, image.height):
+        for x in range(image.width):
+            pixel = image.get_pixel(x,y)
+            new_pixel = new_image.get_pixel(x,target_y)
+
+            new_pixel.red = pixel.red
+            new_pixel.green = pixel.green
+            new_pixel.blue = pixel.blue
+        target_y -= 1 
+
+        
+    return new_image
 
 def make_borders(filename, thickness, red, green, blue):
     # Takes as inputs a filename, thickness of the borders, and the RGB values of the borders.
     # Returns the given image surrounded by a border of the thickness and color given.
     image = Image(filename)
-    new_image = Image.blank(image.width+(thickness*2),
-                            image.height+(thickness*2)) 
-    new_image.color = (red,green,blue)  # Create the larger image.
-    for y in range(image.height):                          # Copy the original image
-        for x in range(image.width):                       #  into the top of the new
-            pixel = image.get_pixel(x, y)                  #  one.
+    new_image = Image.blank(image.width+(thickness*2),image.height+(thickness*2)) 
+    for y in range(image.height):                          
+        for x in range(image.width):                       
+            pixel = image.get_pixel(x, y)                  
             pixel_new = new_image.get_pixel(x+thickness, y+thickness)
             pixel_new.red = pixel.red
             pixel_new.green = pixel.green
             pixel_new.blue = pixel.blue
+    for y in range(0, thickness): 
+        for x in range(image.width + (2 * thickness)):                       
+            pixel_new = new_image.get_pixel(x, y)          
+            pixel_new.red = red
+            pixel_new.green = green
+            pixel_new.blue = blue
+    for y in range(thickness + image.height, image.height + (2*thickness)):          
+        for x in range(image.width + (2 * thickness)):                       
+            pixel_new = new_image.get_pixel(x, y)          
+            pixel_new.red = red
+            pixel_new.green = green
+            pixel_new.blue = blue
+    for x in range(thickness + image.width, image.width + (2*thickness)):          
+        for y in range(image.height + (2 * thickness)):                       
+            pixel_new = new_image.get_pixel(x, y)          
+            pixel_new.red = red
+            pixel_new.green = green
+            pixel_new.blue = blue
+    for x in range(0, thickness):          
+        for y in range(image.height + (2 * thickness)):                       
+            pixel_new = new_image.get_pixel(x, y)          
+            pixel_new.red = red
+            pixel_new.green = green
+            pixel_new.blue = blue
 
 
     return new_image
 
 
 if __name__ == "__main__":
-    # solution = darken("deer.jpg", 0.9)
-    # solution.show()
-
-    # gray = grayscale("deer.jpg")
-    # gray.show()
-
-    # sepia = sepia("deer.jpg")
-    # sepia.show()
-    border = make_borders("deer.jpg", 50, 220, 100, 100)
+    solution = darken("deer.jpg", 0.9)
+    solution.show()
+    gray = grayscale("deer.jpg")
+    gray.show()
+    switched = flipped("deer.jpg")
+    switched.show()
+    new_sepia = sepia("deer.jpg")
+    new_sepia.show()
+    border = make_borders("deer.jpg", 50, 0, 0, 0)
     border.show()
 
     pass
