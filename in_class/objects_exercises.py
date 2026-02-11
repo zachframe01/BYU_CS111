@@ -16,13 +16,16 @@ class Player:
     >>> player.health
     95
     """
-    pass
+    
     def __init__(self, name):
         self.name = name
         self.health = 100
-        self.nutrition_info = nutrition_info
-        self.inventory = 0
+    
+    def damage(self, amount):
+        self.health -= amount
 
+    def boost(self, amount):
+        self.health += amount
 
 """
 Clothing is a class that represents pieces of clothing in a closet. It tracks
@@ -44,5 +47,15 @@ class Clothing:
     >>> blue_shirt.is_clean
     True
     """
-    pass
+    def __init__(self, category, color):
+        self.category = category
+        self.color = color
+        self.is_clean = True
+
+    def wear(self):
+        self.is_clean = False
+
+    def clean(self):
+        self.is_clean = True
+
 
