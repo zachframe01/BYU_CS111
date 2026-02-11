@@ -17,6 +17,11 @@ class Player:
     95
     """
     pass
+    def __init__(self, name):
+        self.name = name
+        self.health = 100
+        self.nutrition_info = nutrition_info
+        self.inventory = 0
 
 
 """
