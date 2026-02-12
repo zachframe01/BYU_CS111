@@ -161,6 +161,8 @@ def validate_commands(commands):
         return True
     elif commands[0] == "-m" and len(commands) == 3:
         return True
+    elif commands[0] == "-b" and len(commands) == 7:
+        return True
     else:
         return False
 
@@ -192,6 +194,10 @@ if __name__ == "__main__":
             image_to_show.show()
         elif commands[0] == "-m":
             image_to_show = mirrored(commands[1])
+            image_to_show.save(commands[2])
+            image_to_show.show()
+        elif commands[0] == "-b":
+            image_to_show = make_borders(commands[1], commands[3], commands[4], commands[5])
             image_to_show.save(commands[2])
             image_to_show.show()
     else:
