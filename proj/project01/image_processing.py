@@ -82,6 +82,30 @@ def flipped(filename):
         
     return new_image
 
+def mirrored(filename):
+    # Takes as inputs a filename.
+    # Returns an image where each pixel's position is flipped vertically
+    image = Image(filename)
+    new_image = Image.blank(image.width, image.height)
+    
+
+    target_x = image.width - 1 
+    
+    for y in range(0, image.height):
+        for x in range(image.width):
+            pixel = image.get_pixel(x,y)
+            new_pixel = new_image.get_pixel(target_x,y)
+
+            new_pixel.red = pixel.red
+            new_pixel.green = pixel.green
+            new_pixel.blue = pixel.blue
+            target_x -= 1 
+        target_x = image.width - 1
+
+        
+    return new_image
+
+
 def make_borders(filename, thickness, red, green, blue):
     # Takes as inputs a filename, thickness of the borders, and the RGB values of the borders.
     # Returns the given image surrounded by a border of the thickness and color given.
@@ -135,8 +159,11 @@ def validate_commands(commands):
         return True
     elif commands[0] == "-f" and len(commands) == 3:
         return True
+    elif commands[0] == "-m" and len(commands) == 3:
+        return True
     else:
         return False
+
 
 
 
@@ -161,6 +188,10 @@ if __name__ == "__main__":
             image_to_show.show()
         elif commands[0] == "-f":
             image_to_show = flipped(commands[1])
+            image_to_show.save(commands[2])
+            image_to_show.show()
+        elif commands[0] == "-m":
+            image_to_show = mirrored(commands[1])
             image_to_show.save(commands[2])
             image_to_show.show()
     else:
