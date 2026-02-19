@@ -16,27 +16,29 @@ class Animal:
     play_multiplier = 2
     interact_increment = 1
     calories_needed = 100
-
     def __init__(self, name, age=0):
         self.name = name
         self.age = age
         self.calories_eaten  = 0
         self.happiness = 0
-
     def play(self, num_hours):
         self.happiness += (num_hours * self.play_multiplier)
         print("WHEEE PLAY TIME!")
-
     def eat(self, food):
         self.calories_eaten += food.calories
         print(f"Om nom nom yummy {food.name}")
         if self.calories_eaten > self.calories_needed:
             self.happiness -= 1
             print("Ugh so full")
-
     def interact_with(self, animal2):
         self.happiness += self.interact_increment
         print(f"Yay happy fun time with {animal2.name}")
+    def __repr__(self):
+        return f"Animal('{self.name}, {self.calories_eaten}, {self.happiness}')"
+    def __str__(self):
+        return f"name: {self.name} \n calories eaten: {self.calories_eaten} \n happiness: {self.happiness}"
+    
+    
 
 
 
@@ -184,4 +186,6 @@ jane_doe = FemaleRabbit("Jane Doe", 2)
 jane_doe.mate_with(mr_wabbit)
 jane_doe.reproduce_like_rabbits()
 print([babe.name for babe in jane_doe.babies]) 
+
+
 
