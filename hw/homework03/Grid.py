@@ -61,26 +61,43 @@ class Grid:
         else:
             raise IndexError
     
-    # @staticmethod
-    # def check_list_malformed(lst):
-    #     """
-    #     Given a list that represents a 2D nested Grid, check that it has the
-    #     right shape. Raise a ValueError if it is malformed.
-    #     >>> Grid.check_list_malformed([[1, 2], [4, 5]])
-    #     >>> Grid.check_list_malformed(1)
-    #     Traceback (most recent call last):
-    #     ...
-    #     ValueError: Input must be a non-empty list of lists.
-    #     >>> Grid.check_list_malformed([[1, 2], [4, 5, 6]])
-    #     Traceback (most recent call last):
-    #     ...
-    #     ValueError: All items in list must be lists of the same length.
-    #     >>> Grid.check_list_malformed([[1, 2], 3])
-    #     Traceback (most recent call last):
-    #     ...
-    #     ValueError: Input must be a list of lists.
-    #     """
-    #     return True
+    @staticmethod
+    def check_list_malformed(lst):
+        """
+        Given a list that represents a 2D nested Grid, check that it has the
+        right shape. Raise a ValueError if it is malformed.
+        >>> Grid.check_list_malformed([[1, 2], [4, 5]])
+        >>> Grid.check_list_malformed(1)
+        Traceback (most recent call last):
+        ...
+        ValueError: Input must be a non-empty list of lists.
+        >>> Grid.check_list_malformed([[1, 2], [4, 5, 6]])
+        Traceback (most recent call last):
+        ...
+        ValueError: All items in list must be lists of the same length.
+        >>> Grid.check_list_malformed([[1, 2], 3])
+        Traceback (most recent call last):
+        ...
+        ValueError: Input must be a list of lists.
+        """
+        #failed Grid.check_list_malformed([[1, 2], 3])
+        #ValueError: Input must be a list of lists.
+        #2/4 correct
+
+        #  The object passed in should be a list object
+        # The top-level list should not be empty
+        # Each element of the list object should also be a list object
+        #  (GOOD) Each element of the top-level list should have the same length
+
+        expected_length = len(lst[0]) 
+
+        for i in range(len(lst)):
+            if len(lst[i]) != expected_length:
+                raise ValueError("All items in list must be lists of the same length.")
+            # if i != list:
+            #     raise ValueError("it needs to be a list")
+            
+
     
     # @staticmethod
     # def build(lst):
@@ -119,4 +136,3 @@ class Grid:
     #     """
     #     return f"Grid({self.width}, {self.height}, array={self.array})"
     
-my_grid = Grid(2,2)
