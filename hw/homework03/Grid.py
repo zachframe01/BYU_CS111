@@ -79,36 +79,35 @@ class Grid:
         Traceback (most recent call last):
         ...
         ValueError: Input must be a list of lists.
-        """
-        #failed Grid.check_list_malformed([[1, 2], 3])
-        #ValueError: Input must be a list of lists.
-        #2/4 correct
-
-        #  The object passed in should be a list object
-        # The top-level list should not be empty
-        # Each element of the list object should also be a list object
-        #  (GOOD) Each element of the top-level list should have the same length
-
+        """        
+        if isinstance(lst, list) == False:
+            raise ValueError("Input must be a non-empty list of lists.")
         expected_length = len(lst[0]) 
-
-        for i in range(len(lst)):
-            if len(lst[i]) != expected_length:
+        for i in lst:
+            if isinstance(i,list) == False:
+                raise ValueError("Input must be a list of lists.")
+            elif len(i) != expected_length:
                 raise ValueError("All items in list must be lists of the same length.")
-            # if i != list:
-            #     raise ValueError("it needs to be a list")
-            
 
     
-    # @staticmethod
-    # def build(lst):
-    #     """
-    #     Given a list that represents a 2D nested Grid construct a Grid object.
-    #     Grid.build([[1, 2, 3], [4, 5 6]])
-    #     >>> Grid.build([[1, 2, 3], [4, 5, 6]]).array
-    #     [[1, 2, 3], [4, 5, 6]]
-    #     """
-    #     self.lst = lst
-    #     return True
+    @staticmethod
+    def build(lst):
+        """
+        Given a list that represents a 2D nested Grid construct a Grid object.
+        Grid.build([[1, 2, 3], [4, 5 6]])
+        >>> Grid.build([[1, 2, 3], [4, 5, 6]]).array
+        [[1, 2, 3], [4, 5, 6]]
+        """
+        Grid.check_list_malformed(lst)
+        height = len(lst)
+        width = len(lst[0])
+
+        new_grid = lst
+        new_independent_copy = deepcopy(new_grid)
+
+        Grid(new_independent_copy, height, width)
+
+        
     
     # def __eq__(self, other):
     #     """
