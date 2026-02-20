@@ -80,7 +80,10 @@ class Grid:
         ...
         ValueError: Input must be a list of lists.
         """        
-        if isinstance(lst, list) == False:
+
+        if isinstance(lst, list) == False or len(lst) == 0:
+            raise ValueError("Input must be a non-empty list of lists.")
+        if isinstance(lst[0], list) == False:
             raise ValueError("Input must be a non-empty list of lists.")
         expected_length = len(lst[0]) 
         for i in lst:
@@ -102,25 +105,17 @@ class Grid:
         height = len(lst)
         width = len(lst[0])
 
-        new_grid = lst
-        new_independent_copy = deepcopy(new_grid)
+        new_grid = Grid(width, height)
+        new_grid.array = deepcopy(lst)
+        return new_grid
 
-        Grid(new_independent_copy, height, width)
+    def __eq__(self, other):
+        if isinstance(other, Grid):
+            return self.array == other.array
+        if isinstance(other, list):
+            return self.array == other
+        return False
 
-        
-    
-    # def __eq__(self, other):
-    #     """
-    #     >>> grid1 = Grid.build([[1, 1, 1], [2, 3, 5]])
-    #     >>> grid2 = Grid.build([[1, 1, 1], [2, 3, 5]])
-    #     >>> grid_lst = [[1, 1, 1], [2, 3, 5]]
-    #     >>> grid1 == grid2
-    #     True
-    #     >>> grid1 == grid_lst
-    #     True
-    #     """
-    #     return True
-    
     # def __str__(self):
     #     """
     #     >>> print(Grid(6, 2))
