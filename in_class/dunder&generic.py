@@ -10,9 +10,12 @@ class Rational:
     def __repr__(self):
         return f"Rational({self.numer}, {self.denom})"
     def __add__(self, other):
+        new_numer = self.numer * other.denom + other.numer * self.denom
+        new_denom = self.denom * other.denom
+        return Rational(new_numer, new_denom)
 
 # what will this print? 
-        print(Rational(1, 2) + Rational(3, 4))
+print(Rational(1, 2) + Rational(3, 4))
 # what do we have to do to add and print the correct result?
 
 # Generic function
