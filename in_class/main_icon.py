@@ -13,7 +13,7 @@ icon = Icon(2, 2, [Pixel(0, 0, 255, 0, 0),
                    Pixel(1, 1, 255, 150, 0)])
 
 for pixel in icon.pixels:
-    pixel.color.g += 100
+   pixel.color.g += 100
 
 # Draw the icon
 display = DisplayFrame()

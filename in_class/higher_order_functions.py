@@ -35,7 +35,7 @@ def summation(n, term):
 print(summation(5,lambda k: k ** 3))
 
 # now print the result of summation replacing 0 with your own lambda expression
-print(summation(5,lambda k: 0))
+print(summation(5,lambda k: 2/k **2))
 
 
 # locally defined function - adder

@@ -40,7 +40,7 @@ print(result2(8))   # Output: x is less than 10
 print(result2(10))  # Output: x is equal to 10
 
 # Now write a lambda expression that is assigned to "result" that produces the output in the comments below
-result = lambda x : None
+result = lambda x : "Stop!" if x == "red" else ("Go!" if x == "green" else "Proceed with caution!")
 print(result("red"))    # Output: Stop!
 print(result("green"))  # Output: Go!
 print(result("yellow")) # Output: Proceed with caution!
