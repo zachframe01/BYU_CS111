@@ -108,6 +108,9 @@ class Grid:
         new_grid = Grid(width, height)
         new_grid.array = deepcopy(lst)
         return new_grid
+    
+    def copy(grid):
+        return deepcopy(grid)
 
     def __eq__(self, other):
         if isinstance(other, Grid):
@@ -116,17 +119,17 @@ class Grid:
             return self.array == other
         return False
 
-    # def __str__(self):
-    #     """
-    #     >>> print(Grid(6, 2))
-    #     Grid(6, 2, first = None)
-    #     """
-    #     return True
+    def __str__(self):
+        """
+        >>> print(Grid(6, 2))
+        Grid(6, 2, first = None)
+        """
+        return f'Grid({self.width}, {self.height}, first = {self.get(0,0)})'
     
-    # def __repr__(self):
-    #     """
-    #     >>> repr(Grid.build([[5, 5], [3, 2]]))
-    #     'Grid.build([[5, 5], [3, 2]])'
-    #     """
-    #     return f"Grid({self.width}, {self.height}, array={self.array})"
+    def __repr__(self):
+        """
+        >>> repr(Grid.build([[5, 5], [3, 2]]))
+        'Grid.build([[5, 5], [3, 2]])'
+        """
+        return f"Grid.build({self.array})"
     
