@@ -58,3 +58,10 @@ print(make_adder(3)(4))
 # and returns a function that when called with a second string, returns a string
 # consisting of the second string with the first string concatenated to the front and back,
 # e.g., first_string = '**', second_string = 'Note', returned_string = '**Note**'
+def first_string(outer):
+    def second_string(inner):
+        return outer + inner + outer
+    return second_string
+
+print(first_string('***')('note'))
+
