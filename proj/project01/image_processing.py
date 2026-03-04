@@ -7,8 +7,12 @@ def display(filename):
     return Image(filename)
 
 def darken(filename, percent):
-    #Takes as inputs a filename and percent.
-    # Returns an image where each pixel’s RGB values is reduced by the given percent
+    """
+    Takes as inputs a filename and percent. 
+    Percent will be inputted as a float from 0-1
+    Returns an image where each pixels RGB values is reduced by the given percent
+    """
+
     new_percent = (1 - percent)
     picture = Image(filename)
     for y in range (0,picture.height):
@@ -22,8 +26,11 @@ def darken(filename, percent):
 
 
 def grayscale(filename):
-    # Takes as input a filename.
-    # Returns an image where each pixel’s RGB values are all averaged
+    """
+    Takes as input a filename as a string.
+    Returns an image where each pixels RGB values are all averaged
+    """
+
     picture = Image(filename)
     for y in range (0,picture.height):
         for x in range (0,picture.width):
@@ -35,8 +42,11 @@ def grayscale(filename):
     return picture
 
 def sepia(filename):
-    # Takes as input a filename.
-    # Returns an image where each pixel’s RGB values are computed using the sepia filter
+    """
+    Takes as input a filename as a string.
+    Returns an image where each pixels RGB values are computed using the sepia filter
+    """
+
     picture = Image(filename)
     for y in range (0,picture.height):
         for x in range (0,picture.width):
@@ -61,8 +71,11 @@ def sepia(filename):
 
 
 def flipped(filename):
-    # Takes as inputs a filename.
-    # Returns an image where each pixel's position is flipped vertically
+    """
+    Takes as inputs a filename as a string.
+    Returns an image where each pixel's position is flipped vertically
+    """
+
     image = Image(filename)
     new_image = Image.blank(image.width, image.height)
     target_y = image.height - 1 
@@ -77,8 +90,10 @@ def flipped(filename):
     return new_image
 
 def mirrored(filename):
-    # Takes as inputs a filename.
-    # Returns an image where each pixel's position is flipped vertically
+    """
+    Takes as inputs a filename.
+    Returns an image where each pixel's position is flipped vertically
+    """
     image = Image(filename)
     new_image = Image.blank(image.width, image.height)
     target_x = image.width - 1 
@@ -95,8 +110,10 @@ def mirrored(filename):
 
 
 def make_borders(filename, thickness, red, green, blue):
-    # Takes as inputs a filename, thickness of the borders, and the RGB values of the borders.
-    # Returns the given image surrounded by a border of the thickness and color given.
+    """
+    Takes as inputs a filename (string), thickness of the borders(int), and the RGB values of the borders(int between 0 and 255).
+    Returns the given image surrounded by a border of the thickness and color given.
+    """
     image = Image(filename)
     new_image = Image.blank(image.width+(thickness*2),image.height+(thickness*2)) 
     for y in range(image.height):                          
@@ -134,8 +151,10 @@ def make_borders(filename, thickness, red, green, blue):
 
 
 def collage(image1, image2, image3, image4, thickness):
-    # Takes as inputs a filename, thickness of the borders, and the RGB values of the borders.
-    # Returns the given image surrounded by a border of the thickness and color given.
+    """
+    Takes as inputs a filename (string), thickness of the borders(int), and the RGB values of the borders(int between 0 and 255).
+    Returns the given image surrounded by a border of the thickness and color given.
+    """
     image1 = Image(image1)
     image2 = Image(image2)
     image3 = Image(image3)
@@ -178,6 +197,11 @@ def collage(image1, image2, image3, image4, thickness):
     return new_image
 
 def detect_green(pixel, threshold_set, factor_set):
+    """
+    taken color from pixel, threshold and factor tells weather the pixel meets the greenness effect
+    Threshold and factor are (int)
+    pixel is a pixel which includes RGB value.
+    """
     factor = factor_set
     threshold = threshold_set
     average = (pixel.red + pixel.green + pixel.blue) / 3
@@ -188,6 +212,10 @@ def detect_green(pixel, threshold_set, factor_set):
     
 
 def greenscreen_filter(front_image, back_image, threshold, factor):
+    """
+    used to replace a background image on the green pixels. 
+    threshold and factor are an int
+    """
     front_image = Image(front_image)
     back_image = Image(back_image)
     new_image = Image.blank(front_image.width, front_image.height)
@@ -210,7 +238,11 @@ def greenscreen_filter(front_image, back_image, threshold, factor):
 
 
 def validate_commands(commands):
-   ### this will validate the things inputted. 
+    """
+    this will validate the things inputted.
+    commands should be a string consisting of the valid commands. 
+    """
+ 
     if commands[0] == "-d" and len(commands) == 2:
         return True
     elif commands[0] == "-k" and len(commands) == 4:

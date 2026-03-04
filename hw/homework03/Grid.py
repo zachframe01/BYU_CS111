@@ -12,6 +12,9 @@ class Grid:
 
     def in_bounds(self, x, y):
         """
+        determines weather or not a corrdinate is in bounds (x,y).
+        x and y are both intagers. 
+        returns true or false
         Returns True if (x, y) is in bounds
         >>> grid = Grid(3, 4)
         >>> grid.in_bounds(0, 0)
@@ -34,6 +37,7 @@ class Grid:
         """
         Gets the value stored value at (x, y).
         (x, y) should be in bounds.
+        x and y are both integers. 
         >>> grid = Grid(2, 2)
         >>> grid.array = [[1, 2], [4, 5]]
         >>> grid.get(0, 1)
@@ -50,6 +54,8 @@ class Grid:
         """
         Sets a new value into the grid at (x, y).
         (x, y) should be in bounds.
+        x and y are integers. 
+        value can be a 'string' or an int or float. 
         >>> grid = Grid(2, 2)
         >>> grid.set(1, 1, "Milk")
         >>> grid.set(1, 0, "Dud")
@@ -110,9 +116,16 @@ class Grid:
         return new_grid
     
     def copy(grid):
+        '''
+        makes a copy of a grid given. It then is not pointing to the same object. 
+        '''
         return deepcopy(grid)
 
     def __eq__(self, other):
+        '''
+        given two arrays 
+        returns true or false based on weather the lists are filled with the same values. 
+        '''
         if isinstance(other, Grid):
             return self.array == other.array
         if isinstance(other, list):
@@ -121,6 +134,7 @@ class Grid:
 
     def __str__(self):
         """
+        returns a string with the width and height and first element (0,0)
         >>> print(Grid(6, 2))
         Grid(6, 2, first = None)
         """
@@ -128,6 +142,7 @@ class Grid:
     
     def __repr__(self):
         """
+        this is a function to show what you would need to typein to make an object with the same attributes. 
         >>> repr(Grid.build([[5, 5], [3, 2]]))
         'Grid.build([[5, 5], [3, 2]])'
         """
