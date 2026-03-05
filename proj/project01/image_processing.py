@@ -308,6 +308,3 @@ if __name__ == "__main__":
             image_to_show.show()
     else:
         print("that was not a good command")
-
-
-
