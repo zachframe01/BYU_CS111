@@ -15,6 +15,10 @@ class Particle:
         Sand will fall down the array.
         Bubbles will float. 
         '''
-        self.physics
-        pass
+        if self.physics() != None:
+            old_x = self.x
+            old_y = self.y
+            self.x , self.y = self.physics()
+            self.grid.set(self.x, self.y, self)
+            self.grid.set(old_x, old_y, None)
 
