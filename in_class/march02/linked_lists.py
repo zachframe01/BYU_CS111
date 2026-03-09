@@ -79,6 +79,8 @@ def filter_link(f, ll):
     """
     if ll is Link.empty:
         return Link.empty
+    elif f(ll.first):
+        return Link
     return Link(f(ll.first), filter_link(f,ll.rest))
 
 LL = Link(3, Link(4, Link(5)))
