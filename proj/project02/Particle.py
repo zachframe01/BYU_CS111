@@ -3,6 +3,9 @@ from Grid import Grid
 class Particle:
 
     def __init__(self, grid, x=0 ,y=0):
+        '''
+        Particle has a grid, x value (int), and a y value (int)
+        '''
         self.x = x
         self.y = y
         self.grid = grid
@@ -15,10 +18,11 @@ class Particle:
         Sand will fall down the array.
         Bubbles will float. 
         '''
-        if self.physics() != None:
+        physics_value =self.physics()
+        if physics_value != None:
             old_x = self.x
             old_y = self.y
-            self.x , self.y = self.physics()
+            self.x , self.y = physics_value
             self.grid.set(self.x, self.y, self)
             self.grid.set(old_x, old_y, None)
 

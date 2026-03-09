@@ -3,7 +3,7 @@ code taken from a project at Stanford CS106A
 """
 
 from Grid import Grid
-from Grid_Objects import * # imports all Grid objects
+from Grid_Objects import * 
 
 all_grid_objects = []
 
@@ -23,8 +23,12 @@ def add_object(grid, object_type, x, y):
     :param x: the x coordinate to add the object to
     :param y: the y coordinate to add the object to
     """
-    pass
-
+    if grid.get(x,y) == None:
+        value = object_type(grid,x,y)
+        all_grid_objects.append(value)
+        return grid.set(x, y, value)
+    else: 
+        return None
 
 def remove_object(grid, x, y):
     """
@@ -39,7 +43,11 @@ def remove_object(grid, x, y):
     :param x: the x coordinate to remove the object from
     :param y: the y coordinate to remove the object from
     """
-    pass
+    if grid.get(x,y) != None:
+        object = grid.get(x,y)
+        all_grid_objects.remove(object)
+        return grid.set(x, y, None)
+
 
 
 def do_whole_grid():
@@ -54,7 +62,15 @@ def do_whole_grid():
     (4) reverse the order of the list one last time because it will make sorting the list next time just that much easier
     """
     all_grid_objects.sort(key=lambda particle: (particle.y, particle.x))
-    """*** YOUR CODE HERE ***"""
+    for x in all_grid_objects:
+        if isinstance(x, Bubble):
+            x.move()
+    all_grid_objects.reverse()
+    for x in all_grid_objects:
+        if isinstance(x, Sand):
+            x.move()
+    all_grid_objects.reverse()
+    return
 
 
 #########################################################
