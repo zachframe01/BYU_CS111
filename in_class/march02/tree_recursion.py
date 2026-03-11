@@ -1,30 +1,30 @@
-# def cascade(n):
-#     """ prints shrinking and then growing numbers of digits of N """
-#     if n < 10:
-#         print(n)
-#     else:
-#         print(n)
-#         cascade(n//10)
-#         print(n)
+def cascade(n):
+    """ prints shrinking and then growing numbers of digits of N """
+    if n < 10:
+        print(n)
+    else:
+        print(n)
+        cascade(n//10)
+        print(n)
 
-# cascade(123)
+cascade(123)
 
 
-# def inverse_cascade(n):
-#     """ prints growing and then shrinking numbers of digits of N """
-#     grow(n)
-#     print(n)
-#     shrink(n)
+def inverse_cascade(n):
+    """ prints growing and then shrinking numbers of digits of N """
+    grow(n)
+    print(n)
+    shrink(n)
 
-# def f_then_g(f, g, n):
-#     if n:
-#         f(n)
-#         g(n)
+def f_then_g(f, g, n):
+    if n:
+        f(n)
+        g(n)
 
-# grow = lambda n: f_then_g(grow, print, n//10)
-# shrink = lambda n: f_then_g(print, shrink, n//10)
+grow = lambda n: f_then_g(grow, print, n//10)
+shrink = lambda n: f_then_g(print, shrink, n//10)
 
-# inverse_cascade(1234)
+inverse_cascade(1234)
 
 
 def virfib(n):
@@ -44,27 +44,27 @@ def virfib(n):
 print(virfib(5))
 
 # insert the correct expression where the string 'put an expression here' occurs in the code below
-# def all_binary_strings(n):
-#     """
-#     Generate all binary strings of length n.
-#     Each binary string consists only of the characters '0' and '1'.
-#     The order of the returned strings does not matter.
+def all_binary_strings(n):
+    """
+    Generate all binary strings of length n.
+    Each binary string consists only of the characters '0' and '1'.
+    The order of the returned strings does not matter.
 
-#     Parameters:
-#         n (int): The length of each binary string. Assumes n >= 0.
-#     Returns:
-#         list[str]: A list containing all binary strings of length n.
+    Parameters:
+        n (int): The length of each binary string. Assumes n >= 0.
+    Returns:
+        list[str]: A list containing all binary strings of length n.
 
-#     >>> all_binary_strings(0)
-#     ['']
-#     >>> all_binary_strings(2)
-#     ['00', '01', '10', '11']
-#     """
-#     if n == 0:
-#         return ['']
-#     else:
-#         return ['put an expression here' for b in all_binary_strings('put an expression here')] \
-#                + ['put an expression here' for b in all_binary_strings('put an expression here')]
+    >>> all_binary_strings(0)
+    ['']
+    >>> all_binary_strings(2)
+    ['00', '01', '10', '11']
+    """
+    if n == 0:
+        return ['']
+    else:
+        return ['put an expression here' for b in all_binary_strings('put an expression here')] \
+               + ['put an expression here' for b in all_binary_strings('put an expression here')]
 
-# print(all_binary_strings(3))
+print(all_binary_strings(3))
 
