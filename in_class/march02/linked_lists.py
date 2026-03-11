@@ -135,11 +135,12 @@ def add(ordered_list, new_val):
     Link(0, Link(1, Link(3, Link(4, Link(5, Link(6))))))
     """
     if new_val < ordered_list.first:  # insert new Link before the current Link - ho can you do that?
-        pass
+        ordered_list.rest = Link(ordered_list.first,ordered_list.rest)
+        ordered_list.first = new_val
     elif new_val > ordered_list.first and ordered_list.rest is Link.empty:  # insert new Link at end of list
-        pass
+        ordered_list.rest = Link(new_val)
     elif new_val > ordered_list.first: # recursively move on to the next Link
-        pass
+        add(ordered_list.rest, new_val)
     return ordered_list  # new_val is equal to the value of the current Link (ordered_list.first), 
                          # so don't insert a new Link and just return the rest of the list instead
 
