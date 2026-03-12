@@ -1,5 +1,4 @@
 #gemini api Key:
-# AIzaSyBVLy_WKV-5YpFTcR26WGYrHktSv-Wz1rU
 
 
 import streamlit as st
