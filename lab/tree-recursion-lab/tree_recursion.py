@@ -55,20 +55,13 @@ def paths(m, n):
     >>> paths(1, 157)
     1
     """
-    if m == 0:
-        if n == 0:
-            return 1
-        else:
-            paths(m , n-1)
-    elif n == 0:
-        if m == 0:
-            return 1
-        else:
-            paths(m-1, n)
+    if m == 1 or n == 1:
+        return 1
     else:
-        return paths(m-1 , n) + paths( m, n-1)
+        return paths(m - 1, n) + paths(m, n - 1)
     
-paths(2,2)
+print(paths(5,7))
+print(paths(1,155))
 
 
 # # Q4
