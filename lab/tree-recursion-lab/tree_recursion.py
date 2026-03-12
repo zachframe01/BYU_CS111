@@ -55,20 +55,20 @@ def paths(m, n):
     >>> paths(1, 157)
     1
     """
-    
     if m == 0:
         if n == 0:
-            paths(m+1, n)
-            paths(m , n+1)
+            return 1
         else:
-            pass
+            paths(m , n-1)
     elif n == 0:
-        pass
+        if m == 0:
+            return 1
+        else:
+            paths(m-1, n)
     else:
-        pass
-    #if I am in 4,4
-    #invalid is 
-    # x > 4, x < 0, y > 4, Y<0
+        return paths(m-1 , n) + paths( m, n-1)
+    
+paths(2,2)
 
 
 # # Q4
