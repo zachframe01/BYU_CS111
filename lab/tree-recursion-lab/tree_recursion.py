@@ -59,9 +59,6 @@ def paths(m, n):
         return 1
     else:
         return paths(m - 1, n) + paths(m, n - 1)
-    
-print(paths(5,7))
-print(paths(1,155))
 
 
 # # Q4
@@ -84,7 +81,7 @@ print(paths(1,155))
 #     1JY
 #     1JZ
 #     1KW
-#     1KX
+#     1KXs
 #     1KY
 #     1KZ
 #     1LW

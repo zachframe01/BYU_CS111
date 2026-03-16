@@ -63,8 +63,8 @@ def all_binary_strings(n):
     if n == 0:
         return ['']
     else:
-        return ['put an expression here' for b in all_binary_strings('put an expression here')] \
-               + ['put an expression here' for b in all_binary_strings('put an expression here')]
+        return ['0' + b  for b in all_binary_strings(n-1)] \
+               + ['1' + b for b in all_binary_strings(n-1)]
 
 print(all_binary_strings(3))
 
