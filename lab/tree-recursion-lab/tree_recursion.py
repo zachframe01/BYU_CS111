@@ -20,7 +20,7 @@ def echo_twice(s, n):
         echo_twice(s+"A", n-1) 
         echo_twice(s+"B",n-1)
 
-
+echo_twice('cat',2)
 
 # Q2
 def ways_to_climb(n):
@@ -94,4 +94,4 @@ def paths(m, n):
 #     R
 #     S
 #     """
-#     """*** YOUR CODE HERE ***"""
+#     if 
