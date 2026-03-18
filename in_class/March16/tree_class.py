@@ -73,7 +73,7 @@ def prune(t, n):
     """
     t.branches = [b for b in t.branches if b.label != n]
     for b in t.branches:
-       prune('put an expression here','put an expression here')
+       prune(b,n)
 
 t = Tree(3, [Tree(1, [Tree(0), Tree(1)]), Tree(2, 
             [Tree(1), Tree(1, [Tree(0), Tree(1)])])])
