@@ -1,8 +1,11 @@
 from byuimage import Image
 
 def darken(filename, percent):
-    #Takes as inputs a filename and percent.
-    # Returns an image where each pixel’s RGB values is reduced by the given percent
+    """
+    Takes as inputs a filename and percent ,a decimal from 0-1.
+    Returns an image where each pixels RGB values is reduced by the given percent
+    example input: darken(Man.png, .4)
+    """
     new_percent = (1 - percent)
     picture = Image(filename)
     for y in range (0,picture.height):
@@ -14,10 +17,12 @@ def darken(filename, percent):
             pass
     return picture
 
-
 def grayscale(filename):
-    # Takes as input a filename.
-    # Returns an image where each pixel’s RGB values are all averaged
+    """
+    input a filename/image.
+    Returns an image where each pixels RGB values are all averaged.
+    (returns a greyscale image.) 
+    """
     picture = Image(filename)
     for y in range (0,picture.height):
         for x in range (0,picture.width):
@@ -29,8 +34,11 @@ def grayscale(filename):
     return picture
 
 def sepia(filename):
-    # Takes as input a filename.
-    # Returns an image where each pixel’s RGB values are computed using the sepia filter
+    '''
+    Takes as input a filename/image.
+    Returns an image where each pixels RGB values are computed using the sepia filter
+    sepia will return a yellow-ish image
+    '''
     picture = Image(filename)
     for y in range (0,picture.height):
         for x in range (0,picture.width):
@@ -55,30 +63,30 @@ def sepia(filename):
 
 
 def flipped(filename):
-    # Takes as inputs a filename.
-    # Returns an image where each pixel's position is flipped vertically
+    '''
+    Takes as inputs a filename/image.
+    Returns an image where each pixel's position is flipped vertically
+    '''
     image = Image(filename)
     new_image = Image.blank(image.width, image.height)
-    
-
     target_y = image.height - 1 
-    
     for y in range(0, image.height):
         for x in range(image.width):
             pixel = image.get_pixel(x,y)
             new_pixel = new_image.get_pixel(x,target_y)
-
             new_pixel.red = pixel.red
             new_pixel.green = pixel.green
             new_pixel.blue = pixel.blue
         target_y -= 1 
-
-        
     return new_image
 
 def make_borders(filename, thickness, red, green, blue):
-    # Takes as inputs a filename, thickness of the borders, and the RGB values of the borders.
-    # Returns the given image surrounded by a border of the thickness and color given.
+    '''
+    Takes as inputs a filename, thickness of the borders (pixels), and the RGB values of the borders (0-255).
+    Returns the given image surrounded by a border of the thickness and color given.
+    example input:
+    make_borders(man.png, 55, 245, 245, 245)
+    '''
     image = Image(filename)
     new_image = Image.blank(image.width+(thickness*2),image.height+(thickness*2)) 
     for y in range(image.height):                          
@@ -112,21 +120,4 @@ def make_borders(filename, thickness, red, green, blue):
             pixel_new.red = red
             pixel_new.green = green
             pixel_new.blue = blue
-
-
     return new_image
-
-
-if __name__ == "__main__":
-    solution = darken("deer.jpg", 0.9)
-    solution.show()
-    gray = grayscale("deer.jpg")
-    gray.show()
-    switched = flipped("deer.jpg")
-    switched.show()
-    new_sepia = sepia("deer.jpg")
-    new_sepia.show()
-    border = make_borders("deer.jpg", 50, 0, 0, 0)
-    border.show()
-
-    pass

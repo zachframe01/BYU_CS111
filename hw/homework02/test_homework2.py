@@ -95,3 +95,17 @@ def test_EXCELLENT_make_borders_flamingo_float_5(make_borders):
     observed = make_borders(
         test_files / 'flamingo-float.png', 5, 255, 125, 125)
     compare_images(observed.image, test_files / 'flamingo-float_border_5.key.png')
+
+
+@excellent
+@with_import('homework2', 'make_borders')
+@with_import('homework2', 'flipped')
+@with_import('homework2', 'sepia')
+@with_import('homework2', 'grayscale')
+@with_import('homework2', 'darken')
+def test_EXCELLENT_docstrings_present(darken, grayscale, sepia, flipped, make_borders):
+    assert darken.__doc__ is not None, "darken() is missing a docstring."
+    assert grayscale.__doc__ is not None, "grayscale() is missing a docstring."
+    assert sepia.__doc__ is not None, "sepia() is missing a docstring."
+    assert flipped.__doc__ is not None, "flipped() is missing a docstring."
+    assert make_borders.__doc__ is not None, "make_borders() is missing a docstring."
