@@ -10,18 +10,9 @@ all_grid_objects = []
 
 def add_object(grid, object_type, x, y):
     """
-    Attempt to add an object to grid
-
-    The steps are as follows:
-
-    (1) Verify that the position specified by the x & y coordinates is empty in the grid. If not, exit.
-    (2) Create a new object of type 'object_type' and set its position to the supplied x and y coordinates.
-    (3) Add the new object to the all_grid_objects list.
-    (4) Store a reference to the new object in the correct grid position
-    :param grid: a grid to store grid objects
-    :param object_type: the class of the new object to create
-    :param x: the x coordinate to add the object to
-    :param y: the y coordinate to add the object to
+    will add an object specified to a grid (rock, sand, bubble)
+    inputs: grid, object type (sand/rock/bubble), x cord, y cord
+    outputs: will change the grid and place the object into the x and y cordinate. 
     """
     if grid.get(x,y) == None:
         value = object_type(grid,x,y)
@@ -32,16 +23,9 @@ def add_object(grid, object_type, x, y):
 
 def remove_object(grid, x, y):
     """
-    Attempt to remove an object from grid
-
-    The steps are as follows:
-
-    (1) Verify that there is a particle of some kind in the specified position. If not, exit.
-    (2) Remove the reference to the object from the grid.
-    (3) Remove the object from the all_grid_objects list.
-    :param grid: a grid to store grid objects
-    :param x: the x coordinate to remove the object from
-    :param y: the y coordinate to remove the object from
+    will remove an object from grid. 
+    inputs: grid, x cord, y cord
+    output: will remove the object from the grid in the location specified. 
     """
     if grid.get(x,y) != None:
         object = grid.get(x,y)
@@ -53,13 +37,8 @@ def remove_object(grid, x, y):
 def do_whole_grid():
     """
     Do one round of gravity over the whole grid.
-
-    The steps are as follows:
-
-    (1) run the `move()` function of all `Bubble` objects in the grid (use your `all_grid_objects` list)
-    (2) reverse the order of the list with the `<list>.reverse()` function
-    (3) run the `move()` function of all `Sand` objects in the grid
-    (4) reverse the order of the list one last time because it will make sorting the list next time just that much easier
+    input: none
+    output: will run the gravity for each particle in the grid. (sand falls, bubble rises, rock stays still.)
     """
     all_grid_objects.sort(key=lambda particle: (particle.y, particle.x))
     for x in all_grid_objects:

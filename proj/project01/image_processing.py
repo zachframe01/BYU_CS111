@@ -4,6 +4,11 @@ import sys
 
 
 def display(filename):
+    '''
+    displays the specified file. 
+    input: file/image
+    output: returns the image. 
+    '''
     return Image(filename)
 
 def darken(filename, percent):

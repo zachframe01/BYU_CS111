@@ -1,8 +1,18 @@
 from copy import deepcopy
 
 class Grid: 
+    '''
+    Class grid will make a Grid which is just a list of lists. 
+    inputs are the width and height. 
+    stores as an object. 
+    '''
 
     def __init__(self, width, height):
+        '''
+        makes the grid. 
+        input: width- int (how tall you want the grid), Height-int (how tall you want the grid)
+        output: stores the width and height as an object. 
+        '''
         self.width = width
         self.height = height
         self.array = []
@@ -110,6 +120,10 @@ class Grid:
         return new_grid
     
     def copy(grid):
+        '''
+        input is a grid (class)
+        returns a copy of the grid. 
+        '''
         return deepcopy(grid)
 
     def __eq__(self, other):
@@ -121,6 +135,8 @@ class Grid:
 
     def __str__(self):
         """
+        Input is the class. 
+        outputs the string of the class. 
         >>> print(Grid(6, 2))
         Grid(6, 2, first = None)
         """
@@ -128,6 +144,7 @@ class Grid:
     
     def __repr__(self):
         """
+        what you would need to type to get a object with the same attributes. 
         >>> repr(Grid.build([[5, 5], [3, 2]]))
         'Grid.build([[5, 5], [3, 2]])'
         """

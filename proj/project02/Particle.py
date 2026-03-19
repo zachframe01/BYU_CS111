@@ -1,18 +1,31 @@
 from Grid import Grid
 
 class Particle:
+    '''
+    3 particles in the class particle: sand, bubble, rock
+    rocks stay still, sand falls, bubbles rise. 
+    The particle object has a grid (class/object), x and y value (int)
+    '''
 
     def __init__(self, grid, x=0 ,y=0):
         '''
-        Particle has a grid, x value (int), and a y value (int)
+        
+        inputs: Particle has a grid, x value (int), and a y value (int)
+        outputs: makes an object (particle) which can be changed later. 
         '''
         self.x = x
         self.y = y
         self.grid = grid
     def __str__(self):
+        '''
+        input the self/object. 
+        outputs a human readable string. 
+        '''
         return f"{type(self).__name__}({self.x},{self.y})"
     def move(self):
         '''
+        input: class/object 
+        output: will move the object in a specified way. (rock/bubble/sand)
         this funciton will call on each particle to show how to behave. 
         Rock will stay the same.
         Sand will fall down the array.

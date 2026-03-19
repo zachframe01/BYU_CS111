@@ -3,10 +3,17 @@ from Grid import Grid
 from Particle import Particle
 
 class Rock(Particle):
+    '''
+    rock particle inherits the particle parent. 
+    Pysics of a rock: stays still. Does not fall, does not move. 
+    '''
     def physics(self):
         '''defines the physics of a rock. Rocks stay still.'''
         return None
 class Sand(Particle):
+    '''
+    this particle will fall when placed in a grid. 
+    '''
     def physics(self):
         '''
         physics of sand will fall to a lower point in an array unless blocked.
@@ -43,6 +50,9 @@ class Sand(Particle):
         else: 
             return False
 class Bubble(Particle):
+    '''
+    Bubble particle rises when placed. It inherits an x and y value from parent class. 
+    '''
     def physics(self):
         '''
         physics of bubble will rise to a higher point in an array unless blocked.
@@ -59,6 +69,11 @@ class Bubble(Particle):
             return self.x-1, self.y - 1
         return None
     def is_move_ok(self,x,y):
+        '''
+        checks the move and returns a true or false value
+        input: x and y value
+        output: true or false
+        '''
         if (self.grid.in_bounds(x, y) and 
             self.grid.get(x, y) == None):
             return True
