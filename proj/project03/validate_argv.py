@@ -24,6 +24,8 @@ def validate_gen(command):
         return False
     elif int(command[1]) < 2 or int(command[2]) < 4:
         print(f'Error! The minimum maze size is 3×5')
+        return
+    maze_maker.print_board(command[1],command[2],command[3])
     return True
 
 def validate_solve(command):

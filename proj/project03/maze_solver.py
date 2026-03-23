@@ -63,3 +63,4 @@ def nesw_is_full(current_x, current_y):
 if __name__ == "__main__":
     commands = sys.argv [1:]
     validate_argv.validate_arg(commands)
+    maze_maker.print_board()

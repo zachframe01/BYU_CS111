@@ -51,22 +51,65 @@
 # You should use the string representation of any exceptions that you catch as the description of the issue when possible.
 #pytest test_maze_solver.py
 
-from sys import argv
+#minimu 3x5
 
-def print_board(x,y):
+#python3 maze_solver.py -g 5 4 example1.txt
+#####
+#S# #
+# # #
+#  E#
+#####
+
+import sys
+
+def print_board(x,y,file):
     # Print the board in a readable format.
-    
-    for row in range(len(board)):
-        if row % 3 == 0 and row != 0:
-            print("-" * 21)
-        line = ""
-        for col in range(len(board[row])):
-            if col % 3 == 0 and col != 0:
-                line += "| "
-            val = board[row][col]
-            line += (str(val) if val != 0 else ".") + " "
-        print(line)
+    user_input = file
+    open_file = open(user_input, 'w')
+    empty_list = []
+    if is_even(x):
+        x = x+1
+    if is_even(y):
+        y = y+1
+    make_board(x,y)
+
+    pass
+
+def make_board(x,y):
+    empty_list = []
+    if is_even(x):
+        x = x+1
+    if is_even(y):
+        y = y+1
+    print(x,y)
+    for x in range(x):
+        empty_list.append([])
+        for y in range(y):
+            empty_list[x].append(0)
+    print(empty_list)
+
+
+
+    # for row in range(len(x)):
+    #     if row % 3 == 0 and row != 0:
+    #         print("-" * 21)
+    #     line = ""
+    #     for col in range(len(board[row])):
+    #         if col % 3 == 0 and col != 0:
+    #             line += "| "
+    #         val = board[row][col]
+    #         line += (str(val) if val != 0 else ".") + " "
+    #     print(line)
+
+def is_even(number):
+    '''
+    input: integer
+    output: true or false based on weather int is even or odd.
+    '''
+    return (number % 2 == 0)
+
+
 
 if __name__ == "__main__":
-    commands = sys.argv [1:]
-    print(commands)
+    print_board(5,4,"example1.txt")
+    # python3 maze_solver.py -g 5 4 example1.txt
