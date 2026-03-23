@@ -60,7 +60,7 @@ print(regex.findall(locations2))
 # Hint: to find the complete matching addresses, you may need to put parentheses around the entire pattern in the regex string
 # and when matching the street type you may need to use parentheses that don't capture a group - (?: ....)
 
-pattern =re.compile(r'')
+pattern =re.compile(r'\d{1,5} (\w+ )+')
 matches = re.findall(pattern,"1296 Eastview Ln, Alpine, UT 84004; 356 University Av, Provo, UT 84601; 10818 Tanglewood Dr, Heber, UT 84032")
 print(matches) 
 

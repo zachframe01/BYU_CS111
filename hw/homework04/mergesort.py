@@ -1,52 +1,53 @@
 from sys import argv
 
 
-def merge(el1,el2):
+def merge(list_one,list_two):
     """
     merge takes 2 arguments (2 lists of integers)
     merge combine 2 lists and them in order 
     """
     new_list = []
-    while len(el1) != 0 and len(el2) != 0:
-        if el1[0] >= el2[0]:
-            new_list.append(el2[0])
-            el2.pop(0)
+    while len(list_one) != 0 and len(list_two) != 0:
+        if list_one[0] >= list_two[0]:
+            new_list.append(list_two[0])
+            list_two.pop(0)
         else:
-            new_list.append(el1[0])
-            el1.pop(0)
-    if len(el1) != 0 and len(el2) == 0:
-        new_list.extend(el1)
-    elif len(el2) != 0 and len(el1) == 0:
-        new_list.extend(el2)
+            new_list.append(list_one[0])
+            list_one.pop(0)
+    if len(list_one) != 0 and len(list_two) == 0:
+        new_list.extend(list_one)
+    elif len(list_two) != 0 and len(list_one) == 0:
+        new_list.extend(list_two)
     return new_list
 
 
-def sorting(l):
+def sorting(list):
     """
     takes a list as an argument
     sorting will split a list into 2 lists recursivly till lenth is 1. 
     after length is 1 it will start to merge at the bottom. 
     this will return a sorted list. 
     """
-    if len(l) == 1:
-        return l 
+    if len(list) == 1:
+        return list 
     else:
-        if is_even(l):  
-            return merge(sorting(l[:(len(l))//2]), sorting(l[(len(l))//2:]))
+        if is_even(list):  
+            return merge(sorting(list[:(len(list))//2]), sorting(list[(len(list))//2:]))
         else:
-            return merge(sorting(l[:(len(l))//2]), sorting(l[((len(l))//2):]))
+            return merge(sorting(list[:(len(list))//2]), sorting(list[((len(list))//2):]))
 
-def is_even(l):
+def is_even(list):
     """
     takes in a list as an argument. 
     returns a boolean for if the len(list) is even or odd. 
     """
-    return len(l) % 2 == 0
+    return len(list) % 2 == 0
 
 
 def add_to_list(file):
     """
-    takes a file as input. Takes each line in the file and commits those lines as elements in a list.
+    takes a file as input. 
+    Takes each line in the file and commits those lines as elements in a list.
     """
     for line in file:
         mega_list.append(line)
