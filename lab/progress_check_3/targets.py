@@ -35,26 +35,40 @@ def count_targets_iterative(link, targets):
     pass
 
 def count_targets_recursive(link, targets):
-    """YOUR CODE HERE"""
+    my_dict = {}
+    for target in targets:
+        my_dict[target] = 0
+    new_list = get_list(link)
+    for element in new_list:
+        for key in my_dict:
+            if key == element:
+                my_dict[key] += 1
+    for key in list(my_dict):
+        if my_dict[key] == 0:
+            del my_dict[key]
+    return my_dict
 
+
+def get_list(link):
+    new_list = []
+    if link.rest == ():
+        return [link.first]
+    new_list.append(link.first)
+    return new_list + get_list(link.rest)
+
+def make_link(list):
     pass
 
 def remove_targets(link, targets):
-    """YOUR CODE HERE"""
+    my_dict = count_targets_recursive(link,targets)
+    for key in my_dict:
+        if link.first == key: 
+            remove_targets(link.rest,targets)
+
+    return Link(link.first, remove_targets(link.rest,targets))
 
 
 if __name__ == "__main__":
-    my_list = [2,4,5]
-    second_list = [2,2,2,2,4,3,2]
-    my_dict = {}
-    for keys in my_list:
-        my_dict[keys]=0
-    print(my_dict)
-    for key in second_list:
-        if key in my_dict:
-            my_dict[key]+=1
-        else:
-            pass
-
-    print(my_dict)
-            
+    link = Link('c', Link(2, Link(2, Link('a', Link('b', Link(4, Link('t', Link(2, Link('s', Link(4))))))))))
+    targets = [2, 4, 'b']
+    print(remove_targets(link,targets))
