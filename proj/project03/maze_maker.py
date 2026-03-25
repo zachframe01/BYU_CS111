@@ -61,8 +61,13 @@
 #####
 
 import sys
+import maze_maker
+import validate_argv
+import random
 
-def print_board(x,y,file):
+random_bool = random.choice([True, False])
+
+def print_board(y,x,file):
     # Print the board in a readable format.
     x = int(x)
     y = int(y)
@@ -82,7 +87,6 @@ def print_board(x,y,file):
         open_file.write(cleaned_line)
         open_file.write("\n")
     open_file.close()
-
 
 def make_board(x,y):
     '''
@@ -105,28 +109,13 @@ def make_board(x,y):
                 empty_list[x_count].append("#")
             elif x_count == x-1:
                 empty_list[x_count].append("#")
+            elif is_even(x_count) and is_even(i):
+                empty_list[x_count].append("#")
             else:
                 empty_list[x_count].append(0)
     empty_list[1][1] = 'S'
     empty_list[-2][-2] = 'E'
-            
-
     return empty_list
-
-def look_at_maze(list):
-    for row in list:
-        print(row)
-
-    # for row in range(len(x)):
-    #     if row % 3 == 0 and row != 0:
-    #         print("-" * 21)
-    #     line = ""
-    #     for col in range(len(board[row])):
-    #         if col % 3 == 0 and col != 0:
-    #             line += "| "
-    #         val = board[row][col]
-    #         line += (str(val) if val != 0 else ".") + " "
-    #     print(line)
 
 def is_even(number):
     '''
@@ -138,4 +127,5 @@ def is_even(number):
 
 
 if __name__ == "__main__":
+    # print_board(12,13,'example2.txt')
     pass

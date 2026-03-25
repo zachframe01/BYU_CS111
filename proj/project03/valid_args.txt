@@ -2,6 +2,13 @@ python3 maze_solver.py -g <width> <height> <filename>
 python3 maze_solver.py -g 5 4 example1.txt
 
 
+python3 maze_solver.py -g 5 4 example1.txt
+#####
+#S# #
+# # #
+#  E#
+#####
+
 python3 maze_solver.py -g 8 10 example2.txt
 #########
 #S      #
@@ -13,11 +20,13 @@ python3 maze_solver.py -g 8 10 example2.txt
 #   #   #
 # # # ###
 # #    E#
+#########
 
-Command:
+Command: (looking good)
 
 python3 maze_solver.py -s test_files/maze2.txt
 test_files/maze2.txt
+python3 maze_solver.py -s test_files/maze0.txt
 
 Prints
 

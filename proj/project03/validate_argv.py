@@ -22,9 +22,9 @@ def validate_gen(command):
     if len(command) != 4:
         print(f'Usage: python3 maze_solver.py [-s maze_file] [-g width height maze_file]')
         return False
-    elif int(command[1]) < 2 or int(command[2]) < 4:
-        print(f'Error! The minimum maze size is 3×5')
-        return
+    elif int(command[1]) <= 2 or int(command[2]) <= 4:
+        print(f'Error! The minimum maze size is 3x5!')
+        return False
     maze_maker.print_board(command[1],command[2],command[3])
     return True
 
@@ -36,4 +36,5 @@ def validate_solve(command):
     if len(command) != 2:
         print(f'Usage: python3 maze_solver.py [-s maze_file] [-g width height maze_file]')
         return False
+    maze_solver.construct(command[1])
     return True

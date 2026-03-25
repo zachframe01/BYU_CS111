@@ -9,12 +9,15 @@ def construct(filename):
             maze.append(list(line.strip("\n")))
         start_x, start_y = find(maze, "S")
         end_x, end_y = find(maze, "E")
-        print(maze)
+
         solved_maze = solve(maze, start_x, start_y, end_x, end_y)
-        solved_maze[start_y][start_x] = "S"
         if solved_maze:
+            solved_maze[start_y][start_x] = "S"
+            print("Success! The path is as follows:")
             for line in solved_maze:
                 print("".join(line))
+        else:
+            print("Error! Solver could find no solution to maze!")
 
 def find(nested_lst, target):
     for i in range(len(nested_lst)):
@@ -49,9 +52,13 @@ def is_move_ok(maze, destination_x, destination_y):
     return False
 
 if __name__ == "__main__":
-    # args = sys.argv[1:]
-    # validate_argv.validate_arg(args)
-    commands = ['-g', '11', '12', 'example1.txt']
-    validate_argv.validate_arg(commands)
+    args = sys.argv[1:]
+    validate_argv.validate_arg(args)
+    # commands = ['-g', '11', '12', 'example1.txt']
+    # validate_argv.validate_arg(commands)
     # if args[0] == "-s":
     #     construct(args[1])
+    # commands =['-s', 'proj/project03/test_files/maze1.txt']
+    # commands =['-s', 'test_files/maze1.txt']
+    # validate_argv.validate_arg(commands)
+    pass
