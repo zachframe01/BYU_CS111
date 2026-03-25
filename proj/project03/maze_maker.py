@@ -66,29 +66,54 @@ def print_board(x,y,file):
     # Print the board in a readable format.
     user_input = file
     open_file = open(user_input, 'w')
-    empty_list = []
     if is_even(x):
         x = x+1
     if is_even(y):
         y = y+1
-    make_board(x,y)
+    my_grid = make_board(x,y)
+    for row in my_grid:
+        cleaned_line = str(row)
+        cleaned_line = cleaned_line.strip("[]")
+        cleaned_line = cleaned_line.replace(",", "").replace(" ", "")
+        cleaned_line = cleaned_line.replace("'", "")
+        cleaned_line = cleaned_line.replace("0", " ")
+        open_file.write(cleaned_line)
+        open_file.write("\n")
+    open_file.close()
 
-    pass
 
 def make_board(x,y):
+    '''
+    input: x and y value signifying how big the maze is. (note that even numbers are rounded up to odd)
+    output: generates (right now) an empty maze with the borders
+    '''
     empty_list = []
     if is_even(x):
         x = x+1
     if is_even(y):
         y = y+1
-    print(x,y)
-    for x in range(x):
+    for x_count in range(x):
         empty_list.append([])
-        for y in range(y):
-            empty_list[x].append(0)
-    print(empty_list)
+        for i in range(y):
+            if x_count == 0:
+                empty_list[x_count].append("#")
+            elif i == 0:
+                empty_list[x_count].append("#")
+            elif i == int(y-1):
+                empty_list[x_count].append("#")
+            elif x_count == x-1:
+                empty_list[x_count].append("#")
+            else:
+                empty_list[x_count].append(0)
+    empty_list[1][1] = 'S'
+    empty_list[-2][-2] = 'E'
+            
 
+    return empty_list
 
+def look_at_maze(list):
+    for row in list:
+        print(row)
 
     # for row in range(len(x)):
     #     if row % 3 == 0 and row != 0:
@@ -111,5 +136,4 @@ def is_even(number):
 
 
 if __name__ == "__main__":
-    print_board(5,4,"example1.txt")
-    # python3 maze_solver.py -g 5 4 example1.txt
+    print_board(9,8,"example1.txt")

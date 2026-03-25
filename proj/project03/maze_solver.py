@@ -1,66 +1,52 @@
 import sys
-import maze_maker
-import validate_argv
 
+def construct(filename):
+    with open(filename, "r") as file:
+        maze = []
+        for line in file.readlines():
+            maze.append(list(line.strip("\n")))
+        start_x, start_y = find(maze, "S")
+        end_x, end_y = find(maze, "E")
+        print(maze)
+        solved_maze = solve(maze, start_x, start_y, end_x, end_y)
+        solved_maze[start_y][start_x] = "S"
+        if solved_maze:
+            for line in solved_maze:
+                print("".join(line))
 
+def find(nested_lst, target):
+    for i in range(len(nested_lst)):
+        for j in range(len(nested_lst[i])):
+            if nested_lst[i][j] == target:
+                return j, i
 
-#move order 
-#East (right)
-# West (left)
-# South (down)
-# North (up)
-#E == end
+def solve(maze, current_x, current_y, target_x, target_y):
+    if maze[current_y][current_x] == "E":
+        return maze
+    if is_move_ok(maze, current_x + 1, current_y):
+        maze[current_y][current_x] = "."
+        if solve(maze, current_x + 1, current_y, target_x, target_y):
+            return maze
+    if is_move_ok(maze, current_x - 1, current_y):
+        maze[current_y][current_x] = "."
+        if solve(maze, current_x - 1, current_y, target_x, target_y):
+            return maze
+    if is_move_ok(maze, current_x, current_y + 1):
+        maze[current_y][current_x] = "."
+        if solve(maze, current_x, current_y + 1, target_x, target_y):
+            return maze
+    if is_move_ok(maze, current_x, current_y - 1):
+        maze[current_y][current_x] = "."
+        if solve(maze, current_x, current_y - 1, target_x, target_y):
+            return maze
+    maze[current_y][current_x] = " "
 
-#prints the solution as start(s) to end (e)
-# It is important to note that the path it finds may not be \n
-# the only valid solution or even the shortest solution.
-
-
-#Success! The path is as follows:
-#######
-#S....#
-# ###.#
-# #  .#
-#   #E#
-#######
-
-#solving format:  python3 maze_solver.py -s <filename>
-#hint (zach - maybe use your sodoku file to display the maze. )
-
-
-#Check the value at the x and y coordinates.
-# E (End): Stop searching! You've found the end, you can break the recursive loop and return a successful value to propagate the result.
-# # (Wall) or . (Marked): Path is blocked, return a value that will indicate that your current path cannot be followed any further.
-#  (Blank) and not S: mark as visited by using a ..
-
-#Base case of above ^^
-# If you get a successful value from a direction, that means you found a solution. \n
-# Return a success value to propagate the result upward in your recursive call stack.
-#return a "Error! Solver could find no solution to maze!" if nothing is found
-
-def find_s(maze):
-    '''
-    input: maze 
-    output: cordinates of the starting position x, y position
-    '''
-    pass
-
-def this_is_end(x,y):
-    '''
-    input: x and y cordinates
-    output: true or false. True if the cord is = to E. False if wall or empty space.
-    '''
-    pass
-
-def nesw_is_full(current_x, current_y):
-    '''
-    returns true or false if a move is all filled. 
-    '''
-
-
-
+def is_move_ok(maze, destination_x, destination_y):
+    if maze[destination_y][destination_x] == " " or maze[destination_y][destination_x] == "E":
+        return True
+    return False
 
 if __name__ == "__main__":
-    commands = sys.argv [1:]
-    validate_argv.validate_arg(commands)
-    maze_maker.print_board()
+    args = sys.argv[1:]
+    if args[0] == "-s":
+        construct(args[1])
