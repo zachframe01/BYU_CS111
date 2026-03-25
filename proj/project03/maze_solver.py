@@ -1,4 +1,6 @@
 import sys
+import validate_argv
+import maze_maker
 
 def construct(filename):
     with open(filename, "r") as file:
@@ -47,6 +49,9 @@ def is_move_ok(maze, destination_x, destination_y):
     return False
 
 if __name__ == "__main__":
-    args = sys.argv[1:]
-    if args[0] == "-s":
-        construct(args[1])
+    # args = sys.argv[1:]
+    # validate_argv.validate_arg(args)
+    commands = ['-g', '11', '12', 'example1.txt']
+    validate_argv.validate_arg(commands)
+    # if args[0] == "-s":
+    #     construct(args[1])

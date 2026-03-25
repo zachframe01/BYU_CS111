@@ -64,6 +64,8 @@ import sys
 
 def print_board(x,y,file):
     # Print the board in a readable format.
+    x = int(x)
+    y = int(y)
     user_input = file
     open_file = open(user_input, 'w')
     if is_even(x):
@@ -88,9 +90,9 @@ def make_board(x,y):
     output: generates (right now) an empty maze with the borders
     '''
     empty_list = []
-    if is_even(x):
+    if is_even(int(x)):
         x = x+1
-    if is_even(y):
+    if is_even(int(y)):
         y = y+1
     for x_count in range(x):
         empty_list.append([])
@@ -136,4 +138,4 @@ def is_even(number):
 
 
 if __name__ == "__main__":
-    print_board(9,8,"example1.txt")
+    pass
