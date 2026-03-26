@@ -3,6 +3,10 @@ import validate_argv
 import maze_maker
 
 def construct(filename):
+    '''
+    input: file
+    output: constructs the maze based on the file given. 
+    '''
     with open(filename, "r") as file:
         maze = []
         for line in file.readlines():
@@ -20,12 +24,22 @@ def construct(filename):
             print("Error! Solver could find no solution to maze!")
 
 def find(nested_lst, target):
+    '''
+    input: list of lists. target in the list.
+    output: gives the location x/y for the target
+    >>> find([[1,2,3],[2,'O',3]],'O')
+    (1, 1)
+    '''
     for i in range(len(nested_lst)):
         for j in range(len(nested_lst[i])):
             if nested_lst[i][j] == target:
                 return j, i
 
 def solve(maze, current_x, current_y, target_x, target_y):
+    '''
+    inputs: a maze(list), x location, y location, target x location, target y location
+    output: maps out the maze.
+    '''
     if maze[current_y][current_x] == "E":
         return maze
     if is_move_ok(maze, current_x + 1, current_y):
@@ -47,13 +61,21 @@ def solve(maze, current_x, current_y, target_x, target_y):
     maze[current_y][current_x] = " "
 
 def is_move_ok(maze, destination_x, destination_y):
+    '''
+    checks to see if the move is okay to make. 
+    input: maze (list), x location, y location you are trying to move to
+    ouput: true or false weather or not the move is okay to make. 
+    '''
     if maze[destination_y][destination_x] == " " or maze[destination_y][destination_x] == "E":
         return True
     return False
 
 if __name__ == "__main__":
     args = sys.argv[1:]
-    validate_argv.validate_arg(args)
+    try:
+        validate_argv.validate_arg(args)
+    except RecursionError as e:
+        print(f'{e} error maximum recursion depth exceeded ')
     # commands = ['-g', '11', '12', 'example1.txt']
     # validate_argv.validate_arg(commands)
     # if args[0] == "-s":

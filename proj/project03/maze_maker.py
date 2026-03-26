@@ -68,7 +68,11 @@ import random
 random_bool = random.choice([True, False])
 
 def print_board(y,x,file):
-    # Print the board in a readable format.
+    '''
+    prints the board to a file
+    input: y and x (how big you want the maze), file name
+    output: prints the maze to a file. 
+    '''
     x = int(x)
     y = int(y)
     user_input = file
