@@ -36,9 +36,12 @@ def find(nested_lst, target):
                 return j, i
 
 def solve(maze, current_x, current_y, target_x, target_y):
+    
     '''
     inputs: a maze(list), x location, y location, target x location, target y location
     output: maps out the maze.
+    >>> solve([['#','#','#','#','#'],['#','S','#',' ','#'],['#',' ','#',' ','#'],['#',' ',' ','E','#'],['#','#','#','#','#']], 1,1,-2,-2)
+    [['#', '#', '#', '#', '#'], ['#', '.', '#', ' ', '#'], ['#', '.', '#', ' ', '#'], ['#', '.', '.', 'E', '#'], ['#', '#', '#', '#', '#']]
     '''
     if maze[current_y][current_x] == "E":
         return maze
@@ -65,6 +68,8 @@ def is_move_ok(maze, destination_x, destination_y):
     checks to see if the move is okay to make. 
     input: maze (list), x location, y location you are trying to move to
     ouput: true or false weather or not the move is okay to make. 
+    >>> is_move_ok([['#','#'],[' ','#']],0,1)
+    True
     '''
     if maze[destination_y][destination_x] == " " or maze[destination_y][destination_x] == "E":
         return True
