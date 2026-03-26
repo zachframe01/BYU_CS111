@@ -26,13 +26,21 @@ class Link:
         return string + str(self.first) + '>'
     
 def count_targets(link, targets):
-    # return count_targets_iterative(link, targets)
+    return count_targets_iterative(link, targets)
     # return count_targets_recursive(link, targets)
     ...
 
 def count_targets_iterative(link, targets):
     """YOUR CODE HERE"""
-    pass
+    my_dict = {x:0 for x in targets}
+    while link.rest != None:
+        for key in list(my_dict):
+            if key == link.first:
+                my_dict[key] +=1
+        link.first = link.rest
+    return my_dict
+
+
 
 def count_targets_recursive(link, targets):
     my_dict = {}
@@ -71,4 +79,4 @@ def remove_targets(link, targets):
 if __name__ == "__main__":
     link = Link('c', Link(2, Link(2, Link('a', Link('b', Link(4, Link('t', Link(2, Link('s', Link(4))))))))))
     targets = [2, 4, 'b']
-    print(remove_targets(link,targets))
+    print(count_targets(link,targets))
