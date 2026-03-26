@@ -1,45 +1,6 @@
 import sys
-import random
-
-
-def validate_arg(command):
-    '''
-    input: the argv artguments
-    output: true or false depending on if the arguments meet specified criteria. 
-    '''
-    if command[0] == '-g':
-        return validate_gen(command)
-    elif command[0] == '-s':
-        return validate_solve(command)
-    else:
-        return (print("Error!: the argument was not give right!"))
-
-def validate_gen(command):
-    '''
-    input: the argv artguments
-    output: true or false depending on if the arguments meet specified criteria. 
-    '''
-    if len(command) != 4:
-        print(f'Usage: python3 maze_solver.py [-s maze_file] [-g width height maze_file]')
-        return False
-    elif int(command[1]) <= 2 or int(command[2]) <= 4:
-        print(f'Error! The minimum maze size is 3x5!')
-        return False
-    print_board(command[1],command[2],command[3])
-    return True
-
-def validate_solve(command):
-    '''
-    input: the argv artguments
-    output: true or false depending on if the arguments meet specified criteria. 
-    '''
-    if len(command) != 2:
-        print(f'Usage: python3 maze_solver.py [-s maze_file] [-g width height maze_file]')
-        return False
-    construct(command[1])
-    return True
-
-
+import validate_argv
+import maze_maker
 
 def construct(filename):
     '''
@@ -114,74 +75,10 @@ def is_move_ok(maze, destination_x, destination_y):
         return True
     return False
 
-random_bool = random.choice([True, False])
-
-def print_board(y,x,file):
-    '''
-    prints the board to a file
-    input: y and x (how big you want the maze), file name
-    output: prints the maze to a file. 
-    '''
-    x = int(x)
-    y = int(y)
-    user_input = file
-    open_file = open(user_input, 'w')
-    if is_even(x):
-        x = x+1
-    if is_even(y):
-        y = y+1
-    my_grid = make_board(x,y)
-    for row in my_grid:
-        cleaned_line = str(row)
-        cleaned_line = cleaned_line.strip("[]")
-        cleaned_line = cleaned_line.replace(",", "").replace(" ", "")
-        cleaned_line = cleaned_line.replace("'", "")
-        cleaned_line = cleaned_line.replace("0", " ")
-        open_file.write(cleaned_line)
-        open_file.write("\n")
-    open_file.close()
-
-def make_board(x,y):
-    '''
-    input: x and y value signifying how big the maze is. (note that even numbers are rounded up to odd)
-    output: generates (right now) an empty maze with the borders
-    '''
-    empty_list = []
-    if is_even(int(x)):
-        x = x+1
-    if is_even(int(y)):
-        y = y+1
-    for x_count in range(x):
-        empty_list.append([])
-        for i in range(y):
-            if x_count == 0:
-                empty_list[x_count].append("#")
-            elif i == 0:
-                empty_list[x_count].append("#")
-            elif i == int(y-1):
-                empty_list[x_count].append("#")
-            elif x_count == x-1:
-                empty_list[x_count].append("#")
-            elif is_even(x_count) and is_even(i):
-                empty_list[x_count].append("#")
-            else:
-                empty_list[x_count].append(0)
-    empty_list[1][1] = 'S'
-    empty_list[-2][-2] = 'E'
-    return empty_list
-
-def is_even(number):
-    '''
-    input: integer
-    output: true or false based on weather int is even or odd.
-    '''
-    return (number % 2 == 0)
-
-
 if __name__ == "__main__":
     args = sys.argv[1:]
     try:
-        validate_arg(args)
+        validate_argv.validate_arg(args)
     except RecursionError as e:
         print(f'{e} error maximum recursion depth exceeded ')
     # commands = ['-g', '11', '12', 'example1.txt']

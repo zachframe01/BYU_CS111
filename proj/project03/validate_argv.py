@@ -1,6 +1,6 @@
 import sys
 import maze_maker
-import maze_solver
+import proj.project03.maze_solver2 as maze_solver2
 
 def validate_arg(command):
     '''
@@ -36,5 +36,5 @@ def validate_solve(command):
     if len(command) != 2:
         print(f'Usage: python3 maze_solver.py [-s maze_file] [-g width height maze_file]')
         return False
-    maze_solver.construct(command[1])
+    maze_solver2.construct(command[1])
     return True

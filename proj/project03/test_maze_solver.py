@@ -175,5 +175,5 @@ def class_docstring_doctest_test(cls):
 
 @excellent
 def test_EXCELLENT_maze_solver_docstrings():
-    import maze_solver
+    import maze_solver as maze_solver
     class_docstring_doctest_test(maze_solver)
